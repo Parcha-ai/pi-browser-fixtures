@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign in, step 1</title><style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:1rem auto;padding:0 1rem}#fixture-banner{background:#fde68a;border:1px solid #b45309;padding:.5rem;font-weight:600}label{display:block;margin:.5rem 0}</style></head>
+<body>
+<p id="fixture-banner" role="note">pi-browser test fixture: do not enter real credentials</p>
+<h1>Sign in, step 1</h1>
+<form id="step1"><label>Username <input name="username" autocomplete="username" required></label><button type="submit">Next</button></form>
+<form id="step2" hidden><label>Password <input name="password" type="password" autocomplete="current-password" required></label><button type="submit">Sign in</button></form>
+<script>
+function signedIn(form) {
+  const shown = document.createElement("p");
+  shown.id = "who";
+  shown.innerHTML = 'Signed in as <b id="account">fixture-user</b>. Password length: <span id="password-length"></span>';
+  shown.querySelector("#password-length").textContent = String(form.elements.password.value.length);
+  form.replaceWith(shown);
+}
+const [step1, step2] = [document.getElementById("step1"), document.getElementById("step2")];
+step1.addEventListener("submit", (event) => {
+  event.preventDefault();
+  step1.reset();
+  step1.hidden = true;
+  step2.hidden = false;
+  document.title = document.querySelector("h1").textContent = "Sign in, step 2";
+});
+step2.addEventListener("submit", (event) => {
+  event.preventDefault();
+  signedIn(step2);
+});
+</script>
+</body></html>

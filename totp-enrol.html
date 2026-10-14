@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Set up two-factor sign-in</title><style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:1rem auto;padding:0 1rem}#fixture-banner{background:#fde68a;border:1px solid #b45309;padding:.5rem;font-weight:600}label{display:block;margin:.5rem 0}</style></head>
+<body>
+<p id="fixture-banner" role="note">pi-browser test fixture: do not enter real credentials</p>
+<h1>Set up two-factor sign-in</h1>
+<p>Enter this key in your authenticator app:</p>
+<code id="totp-secret"></code>
+<form id="code"><label>Code <input name="code" inputmode="numeric" autocomplete="one-time-code" required></label><button type="submit">Verify</button></form>
+<p id="error" hidden>That code is not right.</p>
+<p id="enrolled" hidden>Two-factor sign-in is on.</p>
+<script>
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+const seed = crypto.getRandomValues(new Uint8Array(20));
+const bits = [...seed].map((byte) => byte.toString(2).padStart(8, "0")).join("");
+document.getElementById("totp-secret").textContent = bits.match(/.{1,5}/g).map((chunk) => ALPHABET[parseInt(chunk.padEnd(5, "0"), 2)]).join("");
+async function totp(step) {
+  const key = await crypto.subtle.importKey("raw", seed, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
+  const counter = new DataView(new ArrayBuffer(8));
+  counter.setUint32(4, step);
+  const mac = new Uint8Array(await crypto.subtle.sign("HMAC", key, counter.buffer));
+  const at = mac[mac.length - 1] & 0xf;
+  const value = ((mac[at] & 0x7f) << 24) | (mac[at + 1] << 16) | (mac[at + 2] << 8) | mac[at + 3];
+  return String(value % 1000000).padStart(6, "0");
+}
+document.getElementById("code").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const code = event.target.elements.code.value.trim();
+  event.target.reset();
+  const step = Math.floor(Date.now() / 30000);
+  const ok = (await Promise.all([step - 1, step, step + 1].map(totp))).includes(code);
+  document.getElementById("error").hidden = ok;
+  document.getElementById("enrolled").hidden = !ok;
+  if (ok) event.target.hidden = true;
+});
+</script>
+</body></html>

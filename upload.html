@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Upload</title><style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:1rem auto;padding:0 1rem}#fixture-banner{background:#fde68a;border:1px solid #b45309;padding:.5rem;font-weight:600}label{display:block;margin:.5rem 0}</style></head>
+<body>
+<p id="fixture-banner" role="note">pi-browser test fixture: do not enter real credentials</p>
+<h1>Upload</h1>
+<p><input type="file" id="file" name="file"></p>
+<p id="chosen"></p>
+<script>
+document.getElementById("file").addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  const digest = await crypto.subtle.digest("SHA-256", await file.arrayBuffer());
+  document.getElementById("chosen").textContent = file.name + " " + file.size + " " + [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
+});
+</script>
+</body></html>
