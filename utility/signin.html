@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign in</title><style>body{font-family:system-ui,sans-serif;max-width:44rem;margin:1rem auto;padding:0 1rem}#fixture-banner{background:#fde68a;border:1px solid #b45309;padding:.5rem;font-weight:600}header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #999;margin:.75rem 0}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:.35rem .5rem;text-align:left}label{display:block;margin:.5rem 0}button{padding:.4rem .9rem;font-size:1rem}</style></head>
+<body>
+<p id="fixture-banner" role="note">pi-browser test fixture: practice utility account, do not enter real credentials</p>
+
+<h1>Sign in</h1>
+<p>Practice account: <code id="practice-account">sam.sample@example.test / bluebird-demo</code></p>
+<form id="signin">
+<label>Email <input id="email" name="email" type="email" autocomplete="username"></label>
+<label>Password <input id="password" name="password" type="password" autocomplete="current-password"></label>
+<button type="submit">Sign in</button>
+</form>
+<p id="error" role="alert"></p>
+<script>(function(){
+var K="marrow-creek-session";
+function next(){var n=new URLSearchParams(location.search).get("next")||"";return /^[a-z0-9-]+\.html$/.test(n)?n:"account.html";}
+try{var s=JSON.parse(localStorage.getItem(K));if(s&&s.email){location.replace(next());return;}}catch(e){}
+document.getElementById("signin").addEventListener("submit",function(e){e.preventDefault();
+var m=document.getElementById("email").value.trim().toLowerCase(),p=document.getElementById("password").value;
+if(m==="sam.sample@example.test"&&p==="bluebird-demo"){try{localStorage.setItem(K,JSON.stringify({email:m,name:"Sam Sample"}));}catch(x){}location.replace(next());}
+else document.getElementById("error").textContent="Email or password not recognised.";});
+})();</script>
+
+</body></html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bill October 2025</title><style>body{font-family:system-ui,sans-serif;max-width:44rem;margin:1rem auto;padding:0 1rem}#fixture-banner{background:#fde68a;border:1px solid #b45309;padding:.5rem;font-weight:600}header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #999;margin:.75rem 0}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:.35rem .5rem;text-align:left}label{display:block;margin:.5rem 0}button{padding:.4rem .9rem;font-size:1rem}</style></head>
+<body hidden>
+<p id="fixture-banner" role="note">pi-browser test fixture: practice utility account, do not enter real credentials</p>
+<header><strong>Marrow Creek Utilities</strong><span>Signed in as <span id="name"></span> | <a id="signout" href="signin.html">Sign out</a></span></header>
+<h1>Bill: October 2025</h1>
+<p>Billing period: October 1 to October 31, 2025</p>
+<p>Amount: <strong>$79.58</strong></p>
+<p>Due date: November 15, 2025</p>
+<p>Status: Paid</p>
+<p><a href="statements/statement-2025-10.pdf" download="statement-2025-10.pdf">Download PDF</a></p>
+
+<p><a href="bills.html">Your bills</a> | <a href="account.html">Account summary</a></p>
+<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("marrow-creek-session"));}catch(e){}if(!s||!s.email){var f=location.pathname.split("/").pop()||"account.html";location.replace("signin.html?next="+encodeURIComponent(f));return;}document.getElementById("name").textContent=s.name;document.body.hidden=false;document.getElementById("signout").addEventListener("click",function(){try{localStorage.removeItem("marrow-creek-session");}catch(e){}});})();</script>
+</body></html>
