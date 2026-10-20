@@ -9,7 +9,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 4715 >>
+<< /Length 4677 >>
 stream
 0.043 0.165 0.200 rg
 0 816 612 26 re f
@@ -32,11 +32,9 @@ BT /F1 8.5 Tf 0 Tc 0.353 0.439 0.463 rg 444.95 741 Td (Statement number: MC-2025
 48 724 m 564 724 l S
 0.043 0.165 0.200 rg
 48 598 516 108 re f
-0.098 0.655 0.627 rg
-64 616 4 70 re f
-BT /F2 7 Tf 1.1 Tc 0.098 0.655 0.627 rg 80 679 Td (THIS STATEMENT) Tj ET
-BT /F2 26 Tf 0 Tc 1.000 1.000 1.000 rg 80 643 Td (Amount due: $84.12) Tj ET
-BT /F1 11.5 Tf 0 Tc 0.894 0.953 0.945 rg 80 617 Td (Due date: October 15, 2025) Tj ET
+BT /F2 7 Tf 1.1 Tc 0.098 0.655 0.627 rg 74 679 Td (THIS STATEMENT) Tj ET
+BT /F2 26 Tf 0 Tc 1.000 1.000 1.000 rg 74 643 Td (Amount due: $84.12) Tj ET
+BT /F1 11.5 Tf 0 Tc 0.894 0.953 0.945 rg 74 617 Td (Due date: October 15, 2025) Tj ET
 0.890 0.957 0.933 rg
 456.21 656 83.79 26 re f
 0.122 0.435 0.345 rg
@@ -120,10 +118,10 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000251 00000 n 
-0000005018 00000 n 
-0000005115 00000 n 
+0000004980 00000 n 
+0000005077 00000 n 
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-5217
+5179
 %%EOF
